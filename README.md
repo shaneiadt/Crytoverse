@@ -1,4 +1,6 @@
-Crypto Dashboard built using the below technologies:
+# Crypto Dashboard
+
+Built using the below technologies:
 
 - React
 - TypeScript
