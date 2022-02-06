@@ -6,3 +6,4 @@ Built using the below technologies:
 - TypeScript
 - Redux Toolkit
 - Rapid API
+- Vercel
