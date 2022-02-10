@@ -1,10 +1,12 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore, ThunkAction, Action, getDefaultMiddleware } from '@reduxjs/toolkit';
+
+import { cryptoApi } from '../services/cryptoApi';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    [cryptoApi.reducerPath]: cryptoApi.reducer
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(cryptoApi.middleware)
 });
 
 export type AppDispatch = typeof store.dispatch;
