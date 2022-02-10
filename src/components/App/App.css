@@ -357,8 +357,8 @@ a:hover {
   width: 35px;
   height: 35px;
 }
-.crypto-card .selected{
-  color:rgb(0, 21, 41);
+.crypto-card .selected {
+  color: rgb(0, 21, 41);
   font-weight: bold;
 }
 .select-timeperiod {
@@ -557,10 +557,14 @@ a:hover {
   }
 }
 
-@media (min-width: 640px) {
-  .search-crypto {
-    width: 30%;
-  }
+.search-crypto {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.search-crypto > input {
+  width: 100%;
+  max-width: 400px;
 }
 
 @media (width > 576px) {
