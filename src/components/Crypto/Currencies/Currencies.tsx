@@ -23,9 +23,11 @@ export const Currencies: React.FC<ICurrenciesProps> = ({ simplified = false }) =
 
   return (
     <>
-      <div className="search-crypto">
-        <Input placeholder='Search Crypto Currency' value={searchTerm} onChange={({ target: { value } }) => setSearchTerm(value)} />
-      </div>
+      {!simplified && (
+        <div className="search-crypto">
+          <Input placeholder='Search Crypto Currency' value={searchTerm} onChange={({ target: { value } }) => setSearchTerm(value)} />
+        </div>
+      )}
       <Row gutter={[32, 32]} className="crypto-card-container">
         {cryptos?.map(({ uuid, rank, name, iconUrl, price, marketCap, change }) => (
           <Col xs={24} sm={12} lg={6} key={uuid}>
