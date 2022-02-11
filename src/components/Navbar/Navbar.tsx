@@ -1,14 +1,12 @@
-import React from 'react';
-import { Menu, Typography, Avatar } from 'antd';
+import { Menu, Typography } from 'antd';
 import { Link } from 'react-router-dom';
-import { HomeOutlined, MoneyCollectOutlined, BulbOutlined, FundOutlined } from '@ant-design/icons';
-// import icon from '../../images/logo.png';
- 
+import { HomeOutlined, MoneyCollectOutlined, BulbOutlined, FundOutlined, GlobalOutlined } from '@ant-design/icons';
+
 export const Navbar = () => {
   return (
     <div className="nav-container">
       <div className="logo-container">
-        <Avatar src="https://picsum.photos/100" />
+        <GlobalOutlined style={{ color: '#fff', fontSize: '20px' }} />
         <Typography.Title level={2} className="logo">
           <Link to="/">Cryptoverse</Link>
         </Typography.Title>
