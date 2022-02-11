@@ -5,7 +5,7 @@ import { Col, Row, Typography, Select } from 'antd';
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, NumberOutlined, ThunderboltOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import { useState } from "react";
 
-import { useGetCryptoDetailsQuery } from '../../../services/cryptoApi';
+import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../../../services/cryptoApi';
 import { LinkChart } from "../..";
 
 const { Title, Text } = Typography;
@@ -15,6 +15,7 @@ export const Details = () => {
   const { coinId } = useParams();
   const [timePeriod, setTimePeriod] = useState('7d');
   const { data } = useGetCryptoDetailsQuery(coinId || "");
+  const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId: coinId || "", timePeriod });
 
   if (!coinId) return <>No Coin ID Provided</>;
 
@@ -58,7 +59,7 @@ export const Details = () => {
           <Option key={option} value={option}>{option}</Option>
         ))}
       </Select>
-      <LinkChart />
+      <LinkChart coinHistory={{ change: coinHistory?.data.change || "", history: coinHistory?.data.history || [] }} coinName={coin?.name || ""} currentPrice={millify(Number(coin?.price || 0))} />
       <Col className="stats-container">
         <Col className="coin-value-statistics">
           <Col className="coin-value-statistics-heading">
@@ -93,18 +94,20 @@ export const Details = () => {
       </Col>
       <Col span={24} className="coin-desc-link">
         <Row className="coin-desc">
-          <Title level={3} className='coin-details-heading'>What is {coin?.name}</Title>
-          {HTMLReactParser(coin?.description || "")}
+          <Col span={16}>
+            <Title level={3} className='coin-details-heading'>What is {coin?.name}</Title>
+            {HTMLReactParser(coin?.description || "")}
+          </Col>
+          <Col span={8} className="coin-links">
+            <Title level={3} className='coin-details-heading'>{coin?.name} Links</Title>
+            {coin?.links.map(({ name, type, url }) => (
+              <Row className="coin-link" key={url}>
+                <Title level={5} className='link-name'>{type}</Title>
+                <a href={url} target='_blank' rel='noreferrer'>{name}</a>
+              </Row>
+            ))}
+          </Col>
         </Row>
-        <Col className="coin-links">
-          <Title level={3} className='coin-details-heading'>{coin?.name} Links</Title>
-          {coin?.links.map(({ name, type, url }) => (
-            <Row className="coin-link" key={url}>
-              <Title level={5} className='link-name'>{type}</Title>
-              <a href={url} target='_blank' rel='noreferrer'>{name}</a>
-            </Row>
-          ))}
-        </Col>
       </Col>
     </Col>
   )
