@@ -1,6 +1,6 @@
 import { Button, Menu, Typography } from 'antd';
 import { Link } from 'react-router-dom';
-import { HomeOutlined, MoneyCollectOutlined, BulbOutlined, FundOutlined, GlobalOutlined, MenuOutlined } from '@ant-design/icons';
+import { HomeOutlined, BulbOutlined, FundOutlined, GlobalOutlined, MenuOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 
 export const Navbar = () => {
